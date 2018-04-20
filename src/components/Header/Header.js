@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+};
 
 class Header extends Component {
 
+
     render() {
         return (
-            <div>
-                <header className="App-header">
-                    <h1 className="App-title">Upon Reflection...</h1>
-                    <h4><i>Reflection Board</i></h4>
-                </header>
+            <div className={styles.root}>
+                <AppBar position="static" color="primary">
+                    <Toolbar color="palette.primary.main">
+                        <Typography variant="title" color="inherit">
+                            Upon Reflection...
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
                 <br />
             </div>
         )
     }
 }
 
-export default Header;
+export default withStyles(styles)(Header);
