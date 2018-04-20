@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
+import Header from '../Header/Header'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import NewReflections from '../NewReflection/NewReflections'
+import ViewReflections from '../ViewReflections/ViewReflections'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Oh, the places you've been</h1>
-          <h4><i>Reflection Board</i></h4>
-        </header>
-        <br/>
+        <Header />
+        <Router>
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/new_reflections">Add New Reflection</Link>
+                </li>
+                <li>
+                  <Link to="/view_reflections">View Reflections</Link>
+                </li>
+              </ul>
+            </nav>
+
+            <hr />
+
+            <Route exact path="/new_reflections" component={NewReflections} />
+            <Route path="/view_reflections" component={ViewReflections} />
+          </div>
+        </Router>
       </div>
     );
   }
