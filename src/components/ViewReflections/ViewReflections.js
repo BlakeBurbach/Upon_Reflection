@@ -21,9 +21,6 @@ class ViewReflections extends Component {
         })
         return (
             <div className="viewContainer">
-                <h2>
-                    View Reflections
-                </h2>
             <div className="cardContainer">
                 {reflections}
             </div>

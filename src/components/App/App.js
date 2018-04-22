@@ -8,22 +8,12 @@ import CssBaseline from 'material-ui/CssBaseline';
 import 'typeface-roboto';
 import { createMuiTheme } from 'material-ui/styles';
 import grey from 'material-ui/colors/grey';
-import purple from 'material-ui/colors/purple';
+import indigo from 'material-ui/colors/indigo';
 
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      light: grey[700],
-      main: grey[800],
-      dark: grey[900],
-      contrastText: '#ffffff',
-    },
-    secondary: {
-      light: purple[300],
-      main: purple[400],
-      dark: purple[600],
-      contrastText: '#000000',
-    },
+    primary: grey,
+    secondary: indigo,
   },
 });
 

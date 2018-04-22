@@ -1,3 +1,9 @@
 .navBtnHolder{
-    text-align: center;
+    margin-left: 200px;
+    font-size: 30px;
+}
+
+.viewRef{
+    float: right;
+    margin-right: 200px;
 }

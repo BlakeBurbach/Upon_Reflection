@@ -37,3 +37,6 @@
 .buttons{
     background-color: rgb(227, 213, 255);
 }
+.bookmark{
+   float: right;
+}

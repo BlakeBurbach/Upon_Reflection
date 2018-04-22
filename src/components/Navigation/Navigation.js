@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import NewReflections from '../NewReflection/NewReflections';
 import ViewReflections from '../ViewReflections/ViewReflections';
 import Button from 'material-ui/Button';
@@ -23,16 +23,18 @@ class Navigation extends Component {
                 <div className={styles.root}>
                         <nav>
                             <div className="navBtnHolder">
-                                <Button>
-                                   <Link to="/new_reflections" style={{ textDecoration: 'none' }}>
+                                
+                                   <NavLink to="/new_reflections" style={{ textDecoration: 'none' }} >
                                    Add New Reflection
-                                   </Link>
-                                </Button>
-                                <Button>
-                                    <Link to="/view_reflections" style={{ textDecoration: 'none' }}>
+                                   </NavLink>
+                                
+                                <div className="viewRef">
+                                
+                                    <NavLink to="/view_reflections" style={{ textDecoration: 'none' }}>
                                     View Reflections
-                                    </Link>
-                                </Button>
+                                    </NavLink>
+                                
+                                </div>
                             </div>
                         </nav>
 

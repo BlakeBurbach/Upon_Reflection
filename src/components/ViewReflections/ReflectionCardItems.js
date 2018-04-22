@@ -25,11 +25,11 @@ class ReflectionCardItem extends Component {
                                 {this.props.reflection.description}
                             </div>
                             <div className="buttons">
-                                <CardActions>
-                                    <Button>Delete<Delete/></Button>
-                                    <Button>Bookmark<Bookmark/></Button>
-                                </CardActions>
-                            </div>
+                                    <Button className="delete" size="large"> Delete <Delete/> </Button>
+                                <div className="bookmark">
+                                    <Button size="large"> Bookmark <Bookmark/> </Button>
+                                </div>
+                            </div>    
                     </CardContent>
                 </Card>
         )
