@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTheme } from 'material-ui/styles'
 import Card from 'material-ui/Card';
 import './NewReflections.css';
 import Button from 'material-ui/Button';
@@ -31,7 +32,7 @@ class NewReflections extends Component {
                     </div>
                     <br />
                     <div className="buttonHolder">
-                        <Button variant="raised" className="rememberButton">Remember</Button>
+                        <Button variant="raised" color="default" className="rememberButton">Remember</Button>
                     </div>
                 </Card>
             </div>
@@ -39,4 +40,4 @@ class NewReflections extends Component {
     }
 }
 
-export default NewReflections;
+export default withTheme()(NewReflections);

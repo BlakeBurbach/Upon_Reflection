@@ -5,6 +5,7 @@ import Navigation from '../Navigation/Navigation'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CssBaseline from 'material-ui/CssBaseline';
 import 'typeface-roboto';
+import { withTheme } from 'material-ui/styles'
 import { createMuiTheme } from 'material-ui/styles';
 import grey from 'material-ui/colors/grey';
 import purple from 'material-ui/colors/purple';
@@ -37,7 +38,7 @@ class App extends Component {
           <Header theme={theme}/>
         </div>
         <div>
-        <Navigation />
+        <Navigation theme={theme}/>
         </div>
       </React.Fragment>
       </MuiThemeProvider>
@@ -45,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTheme()(App);
