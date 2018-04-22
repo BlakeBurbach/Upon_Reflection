@@ -35,7 +35,9 @@ class App extends Component {
         <CssBaseline />
         <div className="App">
           <Header theme={theme}/>
-          <Navigation />
+        </div>
+        <div>
+        <Navigation />
         </div>
       </React.Fragment>
       </MuiThemeProvider>
