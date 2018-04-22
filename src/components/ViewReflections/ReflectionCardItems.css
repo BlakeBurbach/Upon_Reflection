@@ -1,0 +1,39 @@
+.viewContainer{
+    text-align: center;
+}
+
+.cardContainer{
+    width: 900px;
+    text-align: center;
+    margin-left: 200px;
+    padding: 0px;
+}
+
+.reflectionCard{
+    margin: 20px;
+    padding: 0px;
+    text-align: left;
+}
+
+.MuiCardContent{
+    padding: 0px;
+}
+
+.topic{
+    font-size: 40px;
+}
+
+.date{
+    font-style: italic;
+    font-size: 20px;
+}
+
+.description{
+    padding: 15px;
+    margin: 10px;
+    font-size: 30px;
+}
+
+.buttons{
+    background-color: rgb(227, 213, 255);
+}

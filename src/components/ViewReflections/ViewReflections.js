@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReflectionCardItem from './ReflectionCardItems.js';
 
 class ViewReflections extends Component {
 
@@ -13,11 +14,19 @@ class ViewReflections extends Component {
     }
 
     render() {
+        let reflections = this.props.reduxState.viewReflections.map((reflection)=>{
+            return(
+                <ReflectionCardItem key={reflection.id} reflection={reflection}/>
+            )
+        })
         return (
-            <div>
+            <div className="viewContainer">
                 <h2>
                     View Reflections
                 </h2>
+            <div className="cardContainer">
+                {reflections}
+            </div>
             </div>
         )
     }
