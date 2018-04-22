@@ -7,8 +7,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-// import { takeEvery, call, put } from 'redux-saga/effects';
-// import axios from 'axios';
+import { takeEvery, call, put } from 'redux-saga/effects';
+import axios from 'axios';
 
 // Set redux-saga's middleWare function to a variable to use more easily
 // with other functions
@@ -19,12 +19,39 @@ const sagaMiddleware = createSagaMiddleware();
 // be a reducer function and go there instead.
 function* rootSaga() {
     yield console.log('rootSaga Loaded');
+    yield takeEvery('GET_REFLECTIONS', getReflectionsSaga);
 }// end rootSaga
+
+function* getReflectionsSaga(action) {
+    try {
+        const getReflectionsResponse = yield call(axios.get, '/api/reflection');
+        console.log('GET getReflectionsSaga response', getReflectionsResponse);
+        yield put(
+            {
+                type: 'DISPLAY_REFLECTIONS',
+                payload: getReflectionsResponse.data
+            }
+        )
+    } catch(error) {
+        console.log('GET getReflectionsResponse ERROR', error);
+    }
+}
 
 // reducer responsible for the state of newReflection page
 const newReflection = (state={}, action) => {
     console.log('newReflection loaded')
     return state
+}
+
+// reducer responsible for the state of ViewReflections page
+const viewReflections = (state = [], action) => {
+    switch (action.type){
+        case 'DISPLAY_REFLECTIONS' :
+            console.log('DISPLAY_REFLECTIONS', action.payload);
+            return action.payload
+        default : 
+            return state
+    }
 }
 
 
@@ -36,7 +63,8 @@ const storeInstance = createStore(
     // redux store that it will be handling more than one reducer by putting them all
     // in an object
     combineReducers({
-        newReflection
+        newReflection,
+        viewReflections
     }),
     applyMiddleware(sagaMiddleware, logger)
 ) // end storeInstance

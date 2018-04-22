@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
 import Header from '../Header/Header'
 import Navigation from '../Navigation/Navigation'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CssBaseline from 'material-ui/CssBaseline';
 import 'typeface-roboto';
-import { withTheme } from 'material-ui/styles'
 import { createMuiTheme } from 'material-ui/styles';
 import grey from 'material-ui/colors/grey';
 import purple from 'material-ui/colors/purple';
@@ -46,4 +46,8 @@ class App extends Component {
   }
 }
 
-export default withTheme()(App);
+const mapReduxStateToProps = reduxState => ({
+  reduxState
+});
+
+export default connect(mapReduxStateToProps)(App);

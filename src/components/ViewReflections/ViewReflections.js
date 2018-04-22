@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ViewReflections extends Component {
-    render(){
+
+
+    componentDidMount() {
+        this.props.dispatch(
+            {
+                type: 'GET_REFLECTIONS'
+            }
+        )
+    }
+
+    render() {
         return (
             <div>
                 <h2>
@@ -12,4 +23,8 @@ class ViewReflections extends Component {
     }
 }
 
-export default ViewReflections;
+const mapReduxStateToProps = reduxState => ({
+    reduxState
+});
+
+export default connect(mapReduxStateToProps)(ViewReflections);
