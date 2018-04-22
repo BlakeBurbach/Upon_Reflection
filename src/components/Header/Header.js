@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -20,7 +19,7 @@ class Header extends Component {
                 <AppBar position="static" color="primary">
                     <Toolbar color="palette.primary.main">
                         <Typography variant="title" color="inherit">
-                            Upon Reflection...
+                            <h1>Upon Reflection...</h1>
                         </Typography>
                     </Toolbar>
                 </AppBar>
