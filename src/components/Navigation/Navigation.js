@@ -15,6 +15,7 @@ const styles = theme => ({
     },
   });
 
+// Navigation component that will change views of single-page app
 class Navigation extends Component {
     render() {
         return (
@@ -22,7 +23,7 @@ class Navigation extends Component {
                 <div className={styles.root}>
                         <nav>
                             <div className="navBtnHolder">
-                                
+                                 
                                    <NavLink to="/new_reflections" style={{ textDecoration: 'none' }} >
                                    Add New Reflection
                                    </NavLink>
@@ -43,8 +44,8 @@ class Navigation extends Component {
                     <Route path="/view_reflections" component={ViewReflections} />
                 </div>
             </Router>
-        )
-    }
-}
+        ) // end return
+    } // end render
+} // end Navigation Component
 
 export default Navigation;

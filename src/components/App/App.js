@@ -11,7 +11,7 @@ import grey from 'material-ui/colors/grey';
 import purple from 'material-ui/colors/purple';
 
 
-
+// theme from MuiTheme
 const theme = createMuiTheme({
   palette: {
     primary: grey,
@@ -19,7 +19,7 @@ const theme = createMuiTheme({
   },
 });
 
-
+// app class will be the hub component for our entire app
 class App extends Component {
   render() {
     return (
@@ -27,9 +27,11 @@ class App extends Component {
       <React.Fragment>
         <CssBaseline />
         <div className="App">
-          <Header theme={theme}/>
+        {/* Header Component */}
+          <Header theme={theme}/> 
         </div>
         <div>
+          {/* Navigation Component */}
         <Navigation theme={theme}/>
         </div>
       </React.Fragment>
@@ -38,8 +40,10 @@ class App extends Component {
   }
 }
 
+// bring in redux's global state via props
 const mapReduxStateToProps = reduxState => ({
   reduxState
 });
 
+// export the app to index js and connect to redux state
 export default connect(mapReduxStateToProps)(App);

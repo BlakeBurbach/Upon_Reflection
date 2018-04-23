@@ -14,6 +14,8 @@ import axios from 'axios';
 // with other functions
 const sagaMiddleware = createSagaMiddleware();
 
+// -------------------------------------------------- SAGAS --------------------------------------------------------
+
 // rootSaga will be the hub and initializing of all Saga functions.
 // Any dispatch call will look here first. If it's not a saga, it will
 // be a reducer function and go there instead.
@@ -91,6 +93,10 @@ function* updateReflectionSaga(action){
     } // end try and catch
 } // end updateReflectionSaga
 
+
+
+// ---------------------------------------------------- REDUCERS ----------------------------------------
+
 // reducer responsible for the state of ViewReflections page
 // activated by getReflectionsSaga
 // will display all of the reflection data on the DOM
@@ -104,6 +110,7 @@ const viewReflections = (state = [], action) => {
     } // end Switch
 } // end viewReflections reducer
 
+// --------------------------------------------------- REDUX STATE STORE --------------------------------------------
 
 // storeInstance will be the only instance of reduxState in this project.
 // This is where we can reduxState what reducers it will be in control of

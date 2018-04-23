@@ -7,9 +7,8 @@ import moment from 'moment'
 import { Delete, Bookmark, BookmarkBorder } from 'material-ui-icons'
 import swal from 'sweetalert';
 
-
+// Component for each individual Reflection Card Item 
 class ReflectionCardItem extends Component {
-
     // onClick to dispatch UPDATE in redux to update reflection's bookmarked property
     handleBookmark = (reflection) => {
         console.log('in handleBookmark', reflection)
@@ -21,6 +20,7 @@ class ReflectionCardItem extends Component {
 
     // onClick to dispatch DELETE in redux to delete reflection from database
     handleDelete = (reflection) => {
+        // sweet alert to warn the user that they are about to delete an item
         swal({
             title: "Are you sure?",
             icon: "warning",
@@ -28,17 +28,20 @@ class ReflectionCardItem extends Component {
             dangerMode: true,
           })
           .then((handleDelete) => {
+              // if they are sure they want to delete, display success message
             if (handleDelete) {
               swal({
                   title: "Deleted",
                 icon: "success",
               });
               console.log('in handleDelete', reflection)
+              // if chosen to delete, dispatch action to redux to DELETE reflection item from database
               this.props.dispatch({
                   type: 'DELETE_REFLECTION', 
                   payload: reflection
               }) // end dispatch
             } else {
+                // if they cancel the delete, display this message
               swal({title:"Didn't Delete"});
             }
           });
@@ -46,6 +49,8 @@ class ReflectionCardItem extends Component {
 
     render() {
         let ReflectionItem;
+        // if the bookmarked property is set to true, display the reflection items with 
+        // the bookmark icon to display as marked
         if (this.props.reflection.bookmarked === true) {
             ReflectionItem = (<Card className="reflectionCard">
                 <CardContent className="cardContent">
@@ -69,6 +74,7 @@ class ReflectionCardItem extends Component {
                 </CardContent>
             </Card>)
         } else {
+            // otherwise if false, display with blank bookmark icon to show as unmarked
             ReflectionItem = (<Card className="reflectionCard">
                 <CardContent className="cardContent">
                     <div className="topic">
@@ -90,13 +96,15 @@ class ReflectionCardItem extends Component {
                     </div>
                 </CardContent>
             </Card>)
-        }
+        } // end if
         return ReflectionItem
-    }
-}
+    } // end render
+} // end ReflectionCardItem Component
 
+// access to redux global state via props
 const mapReduxStateToProps = reduxState => ({
     reduxState
 });
 
+// export component and connect to redux
 export default connect(mapReduxStateToProps)(ReflectionCardItem);
