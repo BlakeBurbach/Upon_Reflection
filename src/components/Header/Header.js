@@ -16,7 +16,7 @@ class Header extends Component {
         return (
             <div className={styles.root}>
                 <AppBar position="static">
-                    <Toolbar color="palette.primary.light">
+                    <Toolbar color="primary">
                         <h1> Upon Reflection... </h1>
                     </Toolbar>
                 </AppBar>

@@ -10,10 +10,12 @@ import { createMuiTheme } from 'material-ui/styles';
 import grey from 'material-ui/colors/grey';
 import purple from 'material-ui/colors/purple';
 
+
+
 const theme = createMuiTheme({
   palette: {
     primary: grey,
-    secondary: purple,
+    secondary: purple
   },
 });
 
