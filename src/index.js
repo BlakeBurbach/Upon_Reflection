@@ -19,44 +19,49 @@ const sagaMiddleware = createSagaMiddleware();
 // be a reducer function and go there instead.
 function* rootSaga() {
     yield console.log('rootSaga Loaded');
-    yield takeEvery('GET_REFLECTIONS', getReflectionsSaga);
+    yield takeEvery('GET_REFLECTIONS', getReflectionsSaga); 
     yield takeEvery('POST_REFLECTION', postReflectionSaga);
 }// end rootSaga
 
+// Redux-Saga GET function to retrieve reflection data from server 
 function* getReflectionsSaga(action) {
     try {
+        // set the GET response from server to getReflectionsResponse for ease of use of data
         const getReflectionsResponse = yield call(axios.get, '/api/reflection');
         console.log('GET getReflectionsSaga response', getReflectionsResponse);
+        // once back from server with data, activate viewReflections reducer to display reflections
         yield put(
             {
                 type: 'DISPLAY_REFLECTIONS',
                 payload: getReflectionsResponse.data
             }
         )
+        // if there is an error
     } catch(error) {
         console.log('GET getReflectionsResponse ERROR', error);
-    }
-}
+    } // end try and catch
+} // end getReflection Saga
 
+// Redux-Saga POST function to send user's new reflection data to server
 function* postReflectionSaga(action){
     console.log('in postReflectionSaga with', action.payload)
     try {
+        // axios POST route to server with action.payload of new reflection data
         yield call(axios.post, '/api/reflection', action.payload);
+        // if successful, activate getReflectionSaga to retrieve updated data from database
         yield put({
             type: 'GET_REFLECTIONS'
         })
+        // if there is an error
     } catch (error) {
         console.log('postReflectionSaga ERROR', error);
-    }
-}
+    } // end try and catch
+} // end postReflectionSaga
 
-// reducer responsible for the state of newReflection page
-// const newReflection = (state={}, action) => {
-//     console.log('newReflection loaded')
-//     return state
-// }
 
 // reducer responsible for the state of ViewReflections page
+// activated by getReflectionsSaga
+// will display all of the reflection data on the DOM
 const viewReflections = (state = [], action) => {
     switch (action.type){
         case 'DISPLAY_REFLECTIONS' :
@@ -64,8 +69,8 @@ const viewReflections = (state = [], action) => {
             return action.payload
         default : 
             return state
-    }
-}
+    } // end Switch
+} // end viewReflections reducer
 
 
 // storeInstance will be the only instance of reduxState in this project.
@@ -76,7 +81,6 @@ const storeInstance = createStore(
     // redux store that it will be handling more than one reducer by putting them all
     // in an object
     combineReducers({
-        // newReflection,
         viewReflections
     }),
     applyMiddleware(sagaMiddleware, logger)
