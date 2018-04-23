@@ -67,7 +67,6 @@ function* deleteReflectionSaga(action){
     try {
         // axios DELETE route to server with action.payload of reflection id
         yield call(axios.delete, `/api/reflection/${action.payload.id}`);
-        alert('Deleted Reflection') // alert user of delete success
         // if successful, activate getReflectionSaga to retrieve updated data from database 
         yield put({
             type: 'GET_REFLECTIONS'

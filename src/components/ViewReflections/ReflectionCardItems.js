@@ -5,6 +5,7 @@ import Card, { CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import moment from 'moment'
 import { Delete, Bookmark, BookmarkBorder } from 'material-ui-icons'
+import swal from 'sweetalert';
 
 
 class ReflectionCardItem extends Component {
@@ -20,11 +21,27 @@ class ReflectionCardItem extends Component {
 
     // onClick to dispatch DELETE in redux to delete reflection from database
     handleDelete = (reflection) => {
-        console.log('in handleDelete', reflection)
-        this.props.dispatch({
-            type: 'DELETE_REFLECTION', 
-            payload: reflection
-        }) // end dispatch
+        swal({
+            title: "Are you sure?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((handleDelete) => {
+            if (handleDelete) {
+              swal({
+                  title: "Deleted",
+                icon: "success",
+              });
+              console.log('in handleDelete', reflection)
+              this.props.dispatch({
+                  type: 'DELETE_REFLECTION', 
+                  payload: reflection
+              }) // end dispatch
+            } else {
+              swal({title:"Didn't Delete"});
+            }
+          });
     } // end handleDelete
 
     render() {
