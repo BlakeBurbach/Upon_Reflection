@@ -82,7 +82,7 @@ function* deleteReflectionSaga(action){
 
 function* updateReflectionSaga(action){
     try {
-        yield call(axios.put, `/api/reflection/${action.payload.id}`, action.payload.bookmarked);
+        yield call(axios.put, `/api/reflection/${action.payload.id}`);
         yield put({
             type: 'GET_REFLECTIONS'
         })

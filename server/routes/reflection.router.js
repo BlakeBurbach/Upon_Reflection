@@ -45,9 +45,8 @@ router.delete('/:id', (req, res)=> {
 // UPDATE function to change reflection's bookmarked boolean value
 router.put('/:id', (req, res)=>{
     const reflectionID = req.params.id;
-    const reflectionUpdate = req.body.bookmarked;
-    const queryText = `UPDATE reflection SET bookmarked = $1 WHERE id = $2;`
-    pool.query(queryText, [reflectionUpdate, reflectionID])
+    const queryText = `UPDATE reflection SET bookmarked = NOT bookmarked WHERE id = $1;`
+    pool.query(queryText, [reflectionID])
         .then((result)=>{
             console.log('reflection router UPDATE success', result);
             res.sendStatus(200);

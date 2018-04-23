@@ -9,9 +9,14 @@ import { Delete, Bookmark, BookmarkBorder } from 'material-ui-icons'
 
 class ReflectionCardItem extends Component {
 
-    // handleBookmark = () => {
-    //     this.props.dispatch()
-    // }
+    // onClick to dispatch UPDATE in redux to update reflection's bookmarked property
+    handleBookmark = (reflection) => {
+        console.log('in handleBookmark', reflection)
+        this.props.dispatch({
+            type: 'UPDATE_REFLECTION',
+            payload: reflection
+        }) // end dispatch
+    } // end handleBookmark
 
     // onClick to dispatch DELETE in redux to delete reflection from database
     handleDelete = (reflection) => {
@@ -41,7 +46,7 @@ class ReflectionCardItem extends Component {
                     <div className="buttons">
                         <Button className="delete" size="large" onClick={()=>this.handleDelete(this.props.reflection)}> Delete <Delete /> </Button>
                         <div className="bookmark">
-                            <Button size="large" onClick={this.handleBookmark}> Bookmark <Bookmark /> </Button>
+                            <Button size="large" onClick={()=>this.handleBookmark(this.props.reflection)}> Bookmark <Bookmark /> </Button>
                         </div>
                     </div>
                 </CardContent>
@@ -63,7 +68,7 @@ class ReflectionCardItem extends Component {
                     <div className="buttons">
                         <Button className="delete" size="large" onClick={()=>this.handleDelete(this.props.reflection)}> Delete <Delete /> </Button>
                         <div className="bookmark">
-                            <Button size="large" onClick={this.handleBookmark}> Bookmark <BookmarkBorder /> </Button>
+                            <Button size="large" onClick={()=>this.handleBookmark(this.props.reflection)}> Bookmark <BookmarkBorder /> </Button>
                         </div>
                     </div>
                 </CardContent>
