@@ -6,7 +6,7 @@ Reflection is such an important part of growth. As you do grow, being mindful an
 
 The landing page takes you to the form to save a reflection. Think of it as a quick journal entry. Anytime you remember something, you've got two inputs, topic and description, to enter what you need to. Then just click the 'Remember' button to save it.
 
-![add new reflection](wireframes/)
+![add new reflection](wireframes/New_Reflection.png)
 
 ### VIEW REFLECTIONS
 
