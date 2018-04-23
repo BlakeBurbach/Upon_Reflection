@@ -21,6 +21,8 @@ function* rootSaga() {
     yield console.log('rootSaga Loaded');
     yield takeEvery('GET_REFLECTIONS', getReflectionsSaga); 
     yield takeEvery('POST_REFLECTION', postReflectionSaga);
+    yield takeEvery('DELETE_REFLECTION', deleteReflectionSaga);
+    yield takeEvery('UPDATE_REFLECTION', updateReflectionSaga);
 }// end rootSaga
 
 // Redux-Saga GET function to retrieve reflection data from server 
@@ -39,6 +41,7 @@ function* getReflectionsSaga(action) {
         // if there is an error
     } catch(error) {
         console.log('GET getReflectionsResponse ERROR', error);
+        alert('Something went wrong!')
     } // end try and catch
 } // end getReflection Saga
 
@@ -55,9 +58,39 @@ function* postReflectionSaga(action){
         // if there is an error
     } catch (error) {
         console.log('postReflectionSaga ERROR', error);
+        alert('Oops! Something went wrong when trying to remember your reflection!')
     } // end try and catch
 } // end postReflectionSaga
 
+// Redux-Saga DELETE function to remove reflection from database
+function* deleteReflectionSaga(action){
+    try {
+        // axios DELETE route to server with action.payload of reflection id
+        yield call(axios.delete, `/api/reflection/${action.payload.id}`);
+        alert('Deleted Reflection') // alert user of delete success
+        // if successful, activate getReflectionSaga to retrieve updated data from database 
+        yield put({
+            type: 'GET_REFLECTIONS'
+        })
+        // if there is an error
+    } catch(error) {
+        console.log('deleteReflectionSaga ERROR', error);
+        // alert user there was an error
+        alert('Oops! Something went wrong trying to delete!');
+    } // end try and catch
+} // end deleteReflectionSaga
+
+function* updateReflectionSaga(action){
+    try {
+        yield call(axios.put, `/api/reflection/${action.payload.id}`, action.payload.bookmarked);
+        yield put({
+            type: 'GET_REFLECTIONS'
+        })
+    } catch(error) {
+        console.log('updateReflectionSaga ERROR', error);
+        alert('Oops! Something went wrong trying to bookmark'); // alert user there was an error
+    } // end try and catch
+} // end updateReflectionSaga
 
 // reducer responsible for the state of ViewReflections page
 // activated by getReflectionsSaga

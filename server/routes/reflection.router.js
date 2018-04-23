@@ -28,4 +28,33 @@ router.post('/', (req, res)=> {
         }) // end poolQuery
 }) // end router POST
 
+// DELETE function to remove reflection from database
+router.delete('/:id', (req, res)=> {
+    const reflectionID = req.params.id;
+    const queryText = `DELETE FROM reflection WHERE id = $1;`;
+    pool.query(queryText, [reflectionID])
+        .then((result)=>{
+            console.log('reflection router DELETE success', result);
+            res.sendStatus(200);
+        }).catch((error)=>{
+            console.log('ERROR - reflection DELETE route', error);
+            res.sendStatus(500);
+        }) // end poolQuery
+}) // end router DELETE
+
+// UPDATE function to change reflection's bookmarked boolean value
+router.put('/:id', (req, res)=>{
+    const reflectionID = req.params.id;
+    const reflectionUpdate = req.body.bookmarked;
+    const queryText = `UPDATE reflection SET bookmarked = $1 WHERE id = $2;`
+    pool.query(queryText, [reflectionUpdate, reflectionID])
+        .then((result)=>{
+            console.log('reflection router UPDATE success', result);
+            res.sendStatus(200);
+        }).catch((error)=>{
+            console.log('ERROR - reflection UPDATE route', error);
+            res.sendStatus(500);
+        }) // end poolQuery
+}) // end router UPDATE
+
 module.exports = router;
