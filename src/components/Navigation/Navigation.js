@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import NewReflections from '../NewReflection/NewReflections';
 import ViewReflections from '../ViewReflections/ViewReflections';
-import Button from 'material-ui/Button';
 import './Navigation.css';
 
 const styles = theme => ({

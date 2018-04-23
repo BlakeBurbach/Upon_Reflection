@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ReflectionCardItems.css'
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import moment from 'moment'
 import {Delete, Bookmark} from 'material-ui-icons'

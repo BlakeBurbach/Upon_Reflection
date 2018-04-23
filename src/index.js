@@ -20,6 +20,7 @@ const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
     yield console.log('rootSaga Loaded');
     yield takeEvery('GET_REFLECTIONS', getReflectionsSaga);
+    yield takeEvery('POST_REFLECTION', postReflectionSaga);
 }// end rootSaga
 
 function* getReflectionsSaga(action) {
@@ -37,11 +38,23 @@ function* getReflectionsSaga(action) {
     }
 }
 
-// reducer responsible for the state of newReflection page
-const newReflection = (state={}, action) => {
-    console.log('newReflection loaded')
-    return state
+function* postReflectionSaga(action){
+    console.log('in postReflectionSaga with', action.payload)
+    try {
+        yield call(axios.post, '/api/reflection', action.payload);
+        yield put({
+            type: 'GET_REFLECTIONS'
+        })
+    } catch (error) {
+        console.log('postReflectionSaga ERROR', error);
+    }
 }
+
+// reducer responsible for the state of newReflection page
+// const newReflection = (state={}, action) => {
+//     console.log('newReflection loaded')
+//     return state
+// }
 
 // reducer responsible for the state of ViewReflections page
 const viewReflections = (state = [], action) => {
@@ -63,7 +76,7 @@ const storeInstance = createStore(
     // redux store that it will be handling more than one reducer by putting them all
     // in an object
     combineReducers({
-        newReflection,
+        // newReflection,
         viewReflections
     }),
     applyMiddleware(sagaMiddleware, logger)
